@@ -7,8 +7,10 @@ namespace snek
         private ScheduleTimer _timer;
         
         public bool Paused { get; private set; }
-        public FullSnek snek = new();
-        public Food food = new();
+        private FullSnek snek = new();
+        private Food food = new();
+        private int points = 0;
+        public bool GameOver { get; private set; }
 
         public void Start()
         {
@@ -20,6 +22,7 @@ namespace snek
         {
             Paused = true;
             _timer.Pause();
+            PrintMessage("Paused");
         }
 
         public void Resume()
@@ -30,10 +33,16 @@ namespace snek
 
         public void Stop()
         {
+            PrintMessage($"Game over! Total points: {points}");
+            GameOver = true;
         }
 
         public void Input(ConsoleKey key)
         {
+            if (key == ConsoleKey.G)
+            {
+                snek.Grow();
+            }
             snek.Direction(key);
         }
 
@@ -44,10 +53,11 @@ namespace snek
             {
                 food.Place();
                 snek.Grow();
+                points++;
             } 
             if (snek.EatSelf())
             {
-                Pause();
+                Stop();
             } else
             {
                 Draw();
@@ -60,7 +70,13 @@ namespace snek
             _timer = new ScheduleTimer(50, Tick);
         }
 
-        public void Draw()
+        void PrintMessage(string message)
+        {
+            Console.SetCursorPosition(0, 0);
+            Console.WriteLine(message);
+        } 
+
+        void Draw()
         {
             Console.SetCursorPosition(0, 0);
 
