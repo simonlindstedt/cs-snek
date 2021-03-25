@@ -7,6 +7,7 @@ namespace snek
         static void Main(string[] args)
         {
             var game = new SnekGame();
+            game.Start();
 
             while (true)
             {
