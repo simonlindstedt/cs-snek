@@ -7,10 +7,12 @@ namespace snek
         private ScheduleTimer _timer;
         
         public bool Paused { get; private set; }
-        public FullSnek snek = new FullSnek();
+        public FullSnek snek = new();
+        public Food food = new();
 
         public void Start()
         {
+            food.Place();
             ScheduleNextTick();
         }
 
@@ -62,6 +64,9 @@ namespace snek
                     if (snek.Position(x, y))
                     {
                         Console.Write('#');
+                    } else if (food.Position(x, y))
+                    {
+                        Console.Write('o');
                     }
                     else
                     {

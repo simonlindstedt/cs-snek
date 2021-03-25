@@ -4,7 +4,7 @@ namespace snek
 {
     public class FullSnek
     {
-        public List<SnekPart> snekBody = new List<SnekPart>();
+        public List<SnekPart> snekBody = new ();
         public int directionX = 1;
         public int directionY = 0;
 
