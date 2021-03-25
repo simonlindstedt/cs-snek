@@ -40,6 +40,11 @@ namespace snek
         void Tick()
         {
             snek.Move();
+            if (snek.Eat(food))
+            {
+                food.Place();
+                snek.Grow();
+            }
             Draw();
             ScheduleNextTick();
         }

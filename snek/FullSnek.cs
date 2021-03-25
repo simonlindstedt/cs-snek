@@ -22,6 +22,17 @@ namespace snek
             snekBody.Add(new SnekPart(head.positionX + directionX, head.positionY + directionY));
         }
 
+        public bool Eat(Food food)
+        {
+            return snekBody[^1].positionX == food.positionX && snekBody[^1].positionY == food.positionY;
+        }
+
+        public void Grow()
+        {
+            var head = snekBody[^1];
+            snekBody.Add(new SnekPart(head.positionX + directionX, head.positionY + directionY));
+        }
+
         private void CheckBoundaries()
         {
             if (snekBody[^1].positionX > Console.WindowWidth - 1)
