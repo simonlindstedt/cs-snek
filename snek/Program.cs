@@ -6,6 +6,7 @@ namespace snek
     {
         static void Main(string[] args)
         {
+            Console.CursorVisible = false;
             var game = new SnekGame();
             game.Start();
 

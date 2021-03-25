@@ -15,10 +15,26 @@ namespace snek
 
         public void Move()
         {
+            CheckBoundaries();
             var tailEnd = snekBody[0];
             var head = snekBody[^1];
             snekBody.Remove(tailEnd);
             snekBody.Add(new SnekPart(head.positionX + directionX, head.positionY + directionY));
+        }
+
+        private void CheckBoundaries()
+        {
+            if (snekBody[^1].positionX > Console.WindowWidth - 1)
+                snekBody[^1].positionX = 0;
+            
+            if (snekBody[^1].positionX < 0)
+                snekBody[^1].positionX = Console.WindowWidth - 1;
+            
+            if (snekBody[^1].positionY > Console.WindowHeight - 1)
+                snekBody[^1].positionY = 0;
+            
+            if (snekBody[^1].positionY < 0)
+                snekBody[^1].positionY = Console.WindowHeight - 1;
         }
 
         public void Direction(ConsoleKey key)
