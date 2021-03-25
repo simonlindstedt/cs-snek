@@ -44,9 +44,15 @@ namespace snek
             {
                 food.Place();
                 snek.Grow();
+            } 
+            if (snek.EatSelf())
+            {
+                Pause();
+            } else
+            {
+                Draw();
+                ScheduleNextTick();
             }
-            Draw();
-            ScheduleNextTick();
         }
 
         void ScheduleNextTick()

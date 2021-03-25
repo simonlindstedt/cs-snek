@@ -27,6 +27,19 @@ namespace snek
             return snekBody[^1].positionX == food.positionX && snekBody[^1].positionY == food.positionY;
         }
 
+        public bool EatSelf()
+        {
+            for(int i = 0; i < snekBody.Count - 1; i++)
+            {
+                if (snekBody[i].positionX == snekBody[^1].positionX && snekBody[i].positionY == snekBody[^1].positionY)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public void Grow()
         {
             var head = snekBody[^1];
