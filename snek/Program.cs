@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Collections.Generic;
 
 namespace snek
 {
@@ -6,6 +8,9 @@ namespace snek
     {
         static void Main(string[] args)
         {
+            var path = "/tmp/snek-score.txt";
+            var hiScore = LoadHiScore(path);
+
             if (!QuestionLoop("Start game?", "y", "n"))
             {
                 Console.WriteLine("Bye!");
@@ -35,7 +40,6 @@ namespace snek
                             case ConsoleKey.DownArrow:
                             case ConsoleKey.RightArrow:
                             case ConsoleKey.LeftArrow:
-                            case ConsoleKey.G:
                                 if (!game.Paused)
                                     game.Input(input.Key);
                                 break;
@@ -44,8 +48,18 @@ namespace snek
                 }
 
                 Console.CursorVisible = true;
+
+                if (game.points > hiScore)
+                {
+                    hiScore = game.points;
+                    Console.WriteLine($"New highscore! {hiScore}");
+                    List<string> score = new() {game.points.ToString()};
+                    SaveHiScore(path, score);
+                }
+                
                 if(QuestionLoop("Restart?", "y", "n"))
                     continue;
+
                 return;
             }
         }
@@ -65,6 +79,26 @@ namespace snek
                 
                 Console.Write($"Answer with {yes} or {no}: ");
             }
+        }
+
+        public static int LoadHiScore(string path)
+        {
+            if (!File.Exists(path))
+                return 0;
+
+            var score = File.ReadAllLines(path);
+
+            if (Int32.TryParse(score[0], out int result))
+            {
+                return result;
+            }
+            
+            return 0;
+        }
+
+        public static void SaveHiScore(string path, List<string> score)
+        {
+            File.WriteAllLines(path, score);
         }
     }
 }

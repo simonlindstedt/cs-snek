@@ -9,7 +9,7 @@ namespace snek
         public bool Paused { get; private set; }
         private FullSnek snek = new();
         private Food food = new();
-        private int points = 0;
+        public int points = 0;
         public bool GameOver { get; private set; }
 
         public void Start()
@@ -39,10 +39,6 @@ namespace snek
 
         public void Input(ConsoleKey key)
         {
-            if (key == ConsoleKey.G)
-            {
-                snek.Grow();
-            }
             snek.Direction(key);
         }
 
