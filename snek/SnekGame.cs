@@ -9,11 +9,12 @@ namespace snek
         public bool Paused { get; private set; }
         private FullSnek snek = new();
         private Food food = new();
-        public int points = 0;
+        public int points { get; private set; }
         public bool GameOver { get; private set; }
 
         public void Start()
         {
+            points = 0;
             food.Place();
             ScheduleNextTick();
         }
