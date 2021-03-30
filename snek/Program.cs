@@ -27,13 +27,9 @@ namespace snek
                         {
                             case ConsoleKey.P:
                                 if (game.Paused)
-                                {
                                     game.Resume();
-                                }
                                 else
-                                {
                                     game.Pause();
-                                }
                                 break;
                             case ConsoleKey.UpArrow:
                             case ConsoleKey.DownArrow:
@@ -41,9 +37,7 @@ namespace snek
                             case ConsoleKey.LeftArrow:
                             case ConsoleKey.G:
                                 if (!game.Paused)
-                                {
                                     game.Input(input.Key);
-                                }
                                 break;
                         }
                     }
@@ -63,15 +57,12 @@ namespace snek
             {
                 var answer = Console.ReadLine();
                 
-                if (answer.ToLower() == yes)
-                {
+                if (answer.ToLower() == yes) 
                     return true;
-                }
 
                 if (answer.ToLower() == no)
-                {
                     return false;
-                }
+                
                 Console.Write($"Answer with {yes} or {no}: ");
             }
         }
