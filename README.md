@@ -1,9 +1,9 @@
 # Snake
 
-<img src="https://media.giphy.com/media/d90nEJJsuf4gMdPTEg/giphy.gif" width="100%">
+<img src="https://media.giphy.com/media/E9zwx0N8EPvyw/giphy.gif" width="100%">
 
 Hi!
 
-I made a console-snake-game as a school project.
+A snake-game for your terminal written in C#.
 
 Enjoy!
